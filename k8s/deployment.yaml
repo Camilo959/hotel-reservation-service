@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-reservation
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotel-reservation
+  template:
+    metadata:
+      labels:
+        app: hotel-reservation
+    spec:
+      containers:
+      - name: hotel-reservation
+        image: your-dockerhub-username/hotel-reservation:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: "postgres-service"
+        - name: DB_USER
+          value: "username"
+        - name: DB_PASS
+          value: "password"
+        - name: DB_NAME
+          value: "hotel_reservation"
