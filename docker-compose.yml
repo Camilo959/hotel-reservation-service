@@ -5,24 +5,6 @@ services:
     build: .
     ports:
       - "3000:3000"
-    depends_on:
-      - db
     environment:
-      - DATABASE_HOST=db
-      - DATABASE_USER=${POSTGRES_USER}
-      - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
-      - DATABASE_NAME=${POSTGRES_DB}
-
-  db:
-    image: postgres:13
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-
-volumes:
-  postgres-data:
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on: []
