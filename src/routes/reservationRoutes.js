@@ -22,6 +22,20 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Obtener una reserva por ID
+router.get('/:id', async (req, res) => {
+    try {
+        const reservation = await Reservation.findByPk(req.params.id);
+        if (reservation) {
+            res.status(200).json(reservation);
+        } else {
+            res.status(404).json({ error: 'Reservation not found' });
+        }
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 // Actualizar una reserva
 router.put('/:id', async (req, res) => {
     try {

@@ -1,7 +1,8 @@
 const { Sequelize } = require("sequelize");
-require("dotenv").config();
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const DATABASE_URL = "postgresql://hotel_reservation_bd_user:Tk41pqFRSywiDmgJ82m2m0IRnZU1wXZE@dpg-cq6689bv2p9s73cgkat0-a.oregon-postgres.render.com/hotel_reservation_bd";
+
+const sequelize = new Sequelize(DATABASE_URL, {
   dialect: "postgres",
   dialectOptions: {
     ssl: {
